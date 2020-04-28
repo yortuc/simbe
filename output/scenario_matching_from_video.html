@@ -66,16 +66,32 @@
 </div>
 
 	<div class="post">
-		<h1>About me</h1>
+		<h1>YOLO Scenario Matching from Video:</h1>
 <ul>
-<li>Started programming with Visual Basic 4, 16 Bit</li>
-<li>Studied astronautical engineering</li>
-<li>Worked in defense industry for 3 years on UAV aerodynamics</li>
-<li>One startup attempt</li>
-<li>Mobile, web app development</li>
-<li>Currently big data and macgine learning for autonomous driving</li>
+<li>Have video footage for 4 views: left, right, front, back</li>
+<li>YOLO can detect car/truck/...</li>
+<li>Lane lines can be detected with OpenCV (maybe YOLO also? other CNN?)</li>
+<li>Can we assign absolute lane_id for objects? for ego vehicle?
+-- If so, we can label atomic states for moving objects and do the logical scenario matching</li>
+<li>
+<p>Even this is not possible, still some info can be extracted from video. 
+--- Lane changes?
+--- How many objects?
+--- Object type validation</p>
+</li>
+<li>
+<p>Run YOLO (OpenCV or TF, or whatever) with Spark on cluster and process videos</p>
+</li>
 </ul>
-<p>Follow me on twitter <a href="http://twitter.com/yortuc">@yortuc</a></p>
+<p>Actions:
+1. Install OpenCV on Linux vm
+2. Install/test darknet-yolo python bindings for single frames
+3. Process a session video with darknet-yolo
+4. Detect lane lines
+5. Combine objects and lane lines</p>
+<ul>
+<li>Run OpenCV with Scala</li>
+</ul>
 	</div>
 	
 </body>

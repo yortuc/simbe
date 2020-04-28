@@ -1,2 +1,3 @@
-@comment: thi can be blank, or can store variables.
+@template: index.html
+@comment: this can be blank, or can store variables.
 

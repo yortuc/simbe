@@ -1,5 +1,7 @@
+@template: post.html
 @title: DataLake Paths Structure
 @date: 22-04-2020
+@tags: big-data spark scala
 
 # DataLake Paths Best Practices
 

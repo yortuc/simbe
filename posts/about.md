@@ -1,3 +1,5 @@
+@template: post.html
+
 # About me
 - Started programming with Visual Basic 4, 16 Bit
 - Studied astronautical engineering
