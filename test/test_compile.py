@@ -20,7 +20,7 @@ class TestCompile(unittest.TestCase):
             'title': 'YOLO Object Detection',
             'content': '# YOLO Object Detection'
         }
-
+        print(context)
         assert context == expected_context
 
 
@@ -54,7 +54,7 @@ class TestCompile(unittest.TestCase):
         template_content = '<%title%> -- <%page_footer%>'
         expected_output  = 'Example post -- this is footer'
         template_files = {
-            'page_footer': {'content':'this is footer'}
+            'page_footer.html': {'content':'this is footer'}
         }
         output = render_template(context, template_content, template_files)
         assert expected_output == output
@@ -62,11 +62,11 @@ class TestCompile(unittest.TestCase):
 
     def test_get_post_links_correctly(self):
         content_files = {
-            'about': {
+            'about.md': {
                 'context': {'title': 'about', 'date': '28-04-2020'},
                 'file_name': 'about.md'
             },
-            'index': {
+            'index.md': {
                 'context': {},
                 'file_name': 'index.md'
             }
