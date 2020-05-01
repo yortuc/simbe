@@ -1,5 +1,5 @@
 # Simbe
-> Simplest Blog Engine
+> 1 File Static Blog Generator
 
 Static site generators are rocket science today. So many complicated features that I do not need. So, I came up with the simplest static blog generator so far, with limited features of course. 
 
