@@ -26,9 +26,7 @@
 	}
 	
 	#logo a{
-		color: black;
-		text-decoration: none;
-		font-size: 36px;
+		float:left;
 	}
 	
 	#logo img{
@@ -36,20 +34,31 @@
 	}
 	
 	#page-header {
-		padding: 20px;
-		/* padding-bottom: 20px; */
-		box-shadow: 0 1px 5px -1px rgba(0, 0, 0, 0.1);
-		text-align: center;
+		display: block;
+		height: 44px;
 		margin: auto;
-		background-color: cornsilk;
+		margin-top: 20px;
+		max-width: 800px;
+		border-bottom: 1px solid #ccc;
+	}
+	
+	#menu {
+		float:right;
+	}	
+	
+	#menu a{
+		line-height:42px;
+		margin-left: 12px;
+		text-decoration: none;
 	}
 	
 	.post {
-		margin: 30px;
+		max-width: 800px;
+		margin: auto;
 	}
 	
-	.post a{
-		display: block;
+	.list ul li{
+		margin-bottom: 8px;
 	}
   </style>
 </head>

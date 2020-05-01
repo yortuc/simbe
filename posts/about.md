@@ -1,11 +1,13 @@
 @template: post.html
 
-# About me
+# About
 - Started programming with Visual Basic 4, 16 Bit
 - Studied astronautical engineering
 - Worked in defense industry for 3 years on UAV aerodynamics
 - One startup attempt
-- Mobile, web app development
-- Currently big data and macgine learning for autonomous driving
+- Currently working on processing big data for autonomous driving
+- Interested in AI, Deep Learning, Computer Vision, Self-driving cars
+- Enjoys writing code, composing music, reading
 
-Follow me on twitter [@yortuc](http://twitter.com/yortuc)
+twitter [@yortuc](https://twitter.com/yortuc) 
+github [@yortuc](https://github.com/yortuc)

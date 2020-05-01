@@ -1,7 +1,11 @@
 import re
+import os
 from os import listdir
-from os.path import isfile, join
+from os.path import isfile, join, isdir
+import shutil  
+
 from markdown import markdown
+
 
 def read_file(path):
     file = open(path, 'r') 
@@ -20,6 +24,16 @@ def read_file_lines(path: str):
 def list_files_in_dir(dir_path):
     files = [f for f in listdir(dir_path) if isfile(join(dir_path, f))]
     return files
+
+def list_dirs_in_dir(dir_path):
+    folders = [f for f in listdir(dir_path) if isdir(join(dir_path, f))]
+    return folders
+
+
+def copy_and_overwrite(from_path, to_path):
+    if os.path.exists(to_path):
+        shutil.rmtree(to_path)
+    shutil.copytree(from_path, to_path)
 
 
 def extract_context_from_content_file(content_path: str):
@@ -41,7 +55,7 @@ def extract_context_from_content(lines: str):
     
     # content is also a variable in context
     context.update({
-        'content': markdown(''.join(content), extensions=['codehilite'])
+        'content': ''.join(content)
     })
             
     return context
@@ -112,9 +126,10 @@ def get_post_links(content_files):
 
 
 def render_post_links(post_links):        
-    ret = []
+    ret = ['<ul>']
     for p in post_links:
-        ret.append(f'<a href="{p[0]}">{p[1]}</a>')
+        ret.append(f'<li><a href="{p[0]}">{p[1]}</a> <span class="linkdate">{p[2]}</span></li>')
+    ret.append('</ul>')
     return ''.join(ret)
 
 
@@ -138,7 +153,8 @@ def compile(config):
     for c in content_files.keys():
         context = content_files[c]['context']
         context.update({
-            'post_links': create_post_links_func(content_files)
+            'post_links': create_post_links_func(content_files),
+            'content': markdown(context['content'])
         })
         template_name = context['template']
         template_content = template_files[template_name]['content']
@@ -151,6 +167,14 @@ def compile(config):
         output_file_path = join(config['output_folder'], content_files[c]['file_name'].replace('.md', '.html'))
         save_to_file(output_file_path, output)
         print(f'saved output to {output_file_path}')
+
+    # copy all the folders and their content to output dir
+    dirs = list_dirs_in_dir(config['content_folder'])
+    print('dirs:', dirs)
+    for d in dirs:
+        src = join(config['content_folder'], d)
+        dest = join(config['output_folder'], d)
+        copy_and_overwrite(src, dest)
 
 
 DEFAULT_CONFIG = {
