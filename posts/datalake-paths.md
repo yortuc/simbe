@@ -19,6 +19,16 @@ Solving a problem within 24 hours of it appearing here will reward you with Leet
 
 Solving a problem within 24 hours of it appearing here will reward you with LeetCoins. Completing all 30 on the day they appear will reward you with even more LeetCoins, and an entry into a prize draw where 3 lucky winners will win cool prizes! More details on the prizes can be found in the announcement.
 
+### SO here is a code example
+
+
+```
+~~~~python
+	def myfunc(some):
+		return [t for t in some if t > 5]
+~~~~
+```
+
 Solving a problem within 24 hours of it appearing here will reward you with LeetCoins. Completing all 30 on the day they appear will reward you with even more LeetCoins, and an entry into a prize draw where 3 lucky winners will win cool prizes! More details on the prizes can be found in the announcement.
 
 Solving a problem within 24 hours of it appearing here will reward you with LeetCoins. Completing all 30 on the day they appear will reward you with even more LeetCoins, and an entry into a prize draw where 3 lucky winners will win cool prizes! More details on the prizes can be found in the announcement.

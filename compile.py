@@ -61,17 +61,32 @@ def extract_context_from_content(lines: str):
     return context
 
 
-def render_template(context, template_content, template_files={}) -> str:
+def render_template(context, template_content, template_files, processed_templates=set()) -> str:
     # find <%SYMBOL%>
     symbols = re.findall(r"<\%(.*?)\%>", template_content)
     symbols = [k.replace('<%', '').replace('%>', '') for k in symbols]
     
     # resolve symbols with variables
     for symbol in symbols:
+        tmp_key = f'{symbol}.html'
         # if symbol is a template file
-        if f'{symbol}.html' in template_files: 
-            # read file content and replace
-            template_content = template_content.replace(f'<%{symbol}%>', template_files[f'{symbol}.html']['content'])
+        
+        if tmp_key in template_files: 
+            print(f'processing {tmp_key}')
+            # read file content also render that template with context and replace
+            # keep the track of processed template files to avoid circular dependencies
+            # if this template file is already processed, there is a circular dep.
+            # if tmp_key in processed_templates:
+            #     raise Exception(f'There is a circular dependency in template files. \nAlready processed: {processed_templates}, still wants to import {tmp_key}')
+            
+            processed_templates.add(tmp_key)
+            imported_template_content = render_template(
+                context             = context, 
+                template_content    = template_files[tmp_key]['content'], 
+                template_files      = template_files, 
+                processed_templates = processed_templates
+            )
+            template_content = template_content.replace(f'<%{symbol}%>', imported_template_content)
         
         elif symbol in context:
             # get val from context
@@ -151,10 +166,11 @@ def compile(config):
     template_files = read_template_files(config['template_folder'])
 
     for c in content_files.keys():
+        print(f'processing {c}')
         context = content_files[c]['context']
         context.update({
             'post_links': create_post_links_func(content_files),
-            'content': markdown(context['content'])
+            'content': markdown(context['content'], extensions=['codehilite'])
         })
         template_name = context['template']
         template_content = template_files[template_name]['content']
@@ -166,7 +182,6 @@ def compile(config):
         )
         output_file_path = join(config['output_folder'], content_files[c]['file_name'].replace('.md', '.html'))
         save_to_file(output_file_path, output)
-        print(f'saved output to {output_file_path}')
 
     # copy all the folders and their content to output dir
     dirs = list_dirs_in_dir(config['content_folder'])
