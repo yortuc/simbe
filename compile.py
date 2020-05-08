@@ -3,7 +3,7 @@ import os
 from os import listdir
 from os.path import isfile, join, isdir
 import shutil  
-
+import datetime
 from markdown import markdown
 
 
@@ -140,7 +140,11 @@ def get_post_links(content_files):
     return ret
 
 
-def render_post_links(post_links):        
+def render_post_links(post_links):
+    # my_dates.sort(key=lambda date: datetime.strptime(date, "%d-%b-%y"))
+
+    post_links.sort(key=lambda tup: datetime.datetime.strptime(tup[2], "%d-%b-%Y"), reverse=True)
+
     ret = ['<ul>']
     for p in post_links:
         ret.append(f'<li><a href="{p[0]}">{p[1]}</a> <span class="linkdate">{p[2]}</span></li>')

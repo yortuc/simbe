@@ -1,11 +1,12 @@
 @template: post.html
-@title: Scenario Matching from Video
-@date: 28-04-2020
+@title: Locgical Scenario Matching from Video
+@date: 6-May-2020
 @tags: big-data spark scala
 
-# YOLO Scenario Matching from Video:
+# Logical Scenario Matching from Video [Draft]:
 
-- Have video footage for 4 views: left, right, front, back
+Give a short introduction about what a logical scenario is.
+
 - YOLO can detect car/truck/...
 - Lane lines can be detected with OpenCV (maybe YOLO also? other CNN?)
 - Can we assign absolute lane_id for objects? for ego vehicle?
@@ -15,6 +16,7 @@
 --- How many objects?
 --- Object type validation
 
+Optional:
 - Run YOLO (OpenCV or TF, or whatever) with Spark on cluster and process videos
 
 Actions:
